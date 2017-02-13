@@ -46,7 +46,7 @@ class Nginx(Task):
             sudo('cp {} {}'.format(self.insecure_nginx_config, join(self.nginx_dir, 'nginx.conf')))
 
             # Replace INSERT_HOST_HERE instaces with host name
-            #tools.sed_replace('INSERT_HOST_HERE', env.DOMAINS, join(self.nginx_dir, 'nginx.conf'))
+            tools.sed_replace('INSERT_HOST_HERE', env.DOMAINS, join(self.nginx_dir, 'nginx.conf'))
 
             sudo('nginx -t')
             sudo('service nginx restart')

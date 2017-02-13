@@ -6,7 +6,7 @@ from os.path import join, sep
 
 from fabric.api import env
 
-env.HOME_DIR = join(sep, 'etc')
+env.HOME_DIR = join(sep, 'opt')
 env.REPO_DIR = join(env.HOME_DIR, 'sbsc')
 env.REPO_URL = 'git@github.com:judeconnectionz/sbsc.git'
 env.OPS_DIR = join(env.REPO_DIR, 'deployments')

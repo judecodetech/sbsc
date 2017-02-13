@@ -21,6 +21,7 @@ class Base(Task):
         'git-core',
         'gzip',
         'htop',
+        'nginx',
         'python-pip',
         'rsync',
         'sendmail',
@@ -44,7 +45,8 @@ class Base(Task):
             with cd(env.REPO_DIR):
                 git.git_pull(git_branch)
         else:
-            git.fetch_clean_repo(env.REPO_URL)
+            with cd(env.HOME_DIR):
+                git.fetch_clean_repo(env.REPO_URL)
 
         execute(nginx.Nginx())
 BASE = Base()

@@ -37,11 +37,11 @@ class Nginx(Task):
         #nginx unsecure configuration
         if exists(cert_file, use_sudo=True):
             # Print out expiration date of SSL Certificates
-            puts(red('Certificate exists: skipping certificate creation'))
+            puts(green('Certificate exists: skipping certificate creation'))
             sudo('echo | openssl s_client -connect {}:443 2>/dev/null | openssl x509'
                 ' -in {} -noout -dates'.format(env.DOMAINS, cert_file))
-            puts(green('Cert file doesn\'t exist. Creating one.'))
         else:
+            puts(green('Cert file doesn\'t exist. Creating one.'))
             puts(yellow('Installing insecure intermediate Nginx config'))
             sudo('cp {} {}'.format(self.insecure_nginx_config, join(self.nginx_dir, 'nginx.conf')))
 

@@ -3,8 +3,8 @@ upstream sbsc {
 }
 
 server {
-    listen 80;
-
+    listen 80 default_server;
+    listen [::]:80 default_server;
 
     # Strict Transport Security
     add_header Strict-Transport-Security max-age=2592000;
@@ -27,6 +27,8 @@ server {
     # increase proxy buffer to handle some OpenERP web requests
     proxy_buffers 16 64k;
     proxy_buffer_size 128k;
+
+    root /var/www/html;
 
     location / {
         proxy_pass    http://sbsc;

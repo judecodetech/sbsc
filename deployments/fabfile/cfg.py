@@ -8,7 +8,7 @@ from fabric.api import env
 
 env.HOME_DIR = join(sep, 'etc')
 env.REPO_DIR = join(env.HOME_DIR, 'sbsc')
-env.REPO_URL = 'https://gitlab.com/erpweb/sbsc.git'
+env.REPO_URL = 'git@github.com:judeconnectionz/sbsc.git'
 env.OPS_DIR = join(env.REPO_DIR, 'deployments')
 env.OPS_ETC_DIR = join(env.OPS_DIR, 'ubuntu', 'etc')
 

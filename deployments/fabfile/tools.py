@@ -67,9 +67,9 @@ def install_letsencrypt():
     Enable HTTPS and SSL on Nginx
     """
     puts(red('Starting Installation of letsencrypt to enable HTTPs and SSL on Nginx'))
-    # with cd('/etc'):
-    #     sudo('rm -rf letsencrypt')
-    #     git.fetch_clean_repo(LETSENCRYPT_DOWNLOAD)
+    with cd('/etc'):
+        sudo('rm -rf letsencrypt')
+        git.fetch_clean_repo(LETSENCRYPT_DOWNLOAD)
 
     with cd(LETSENCRYPT_DIR):
         sudo('chgrp www-data /usr/share/nginx/html/')

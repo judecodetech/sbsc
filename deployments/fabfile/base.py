@@ -27,7 +27,7 @@ class Base(Task):
         'zsh',
     )
 
-    def run(self, git_branch='master'):
+    def run(self, git_branch='dev'):
         """
         Run Base task
         """

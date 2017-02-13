@@ -24,9 +24,9 @@ class Nginx(Task):
     ops_nginx_dir = join(env.OPS_ETC_DIR, 'nginx')
     insecure_nginx_config = join(ops_nginx_dir, 'insecure_nginx.conf')
     nginx_config = join(ops_nginx_dir, 'nginx.conf')
-    secure_nginx_config = join(sites_available, 'serthe')
+    secure_nginx_config = join(sites_available, 'sbsc')
     ssl_dir = join(nginx_dir, 'ssl')
-    ssl_config = join(ops_nginx_dir, 'ssl', 'winecellar-ssl.conf')
+    ssl_config = join(ops_nginx_dir, 'ssl', 'sbsc-ssl.conf')
     cron_file = join(env.REPO_DIR, 'deployments', 'ubuntu', 'etc', 'cron.d', '*_ssl_cert_renewal')
     cron_config_path = join(sep, 'etc', 'cron.d')
 

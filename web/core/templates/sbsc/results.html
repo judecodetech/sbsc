@@ -1,0 +1,114 @@
+{% if results|length %}
+
+<div class='even'>
+	<div colspan="12" class="right">
+		</br>
+		<strong>Found {{ results|length }} suspect{{results|length|pluralize}}</strong>
+	</div>
+</div>
+
+<table>
+	<thead>
+		<tr>
+			<th scope="col" class="sortable column-first_name">	   
+			    <div class="text"><a>First name</a></div>
+			    <div class="clear"></div>
+			</th>
+			<th scope="col" class="sortable column-last_name">
+			    <div class="text"><a>Last name</a></div>
+			    <div class="clear"></div>
+			</th>
+			<th scope="col" class="column-image_tag">
+			   <div class="text"><span>Avatar</span></div>
+			   <div class="clear"></div>
+			</th>
+			<th scope="col" class="sortable column-gender">
+			    <div class="text"><a>Gender</a></div>
+			    <div class="clear"></div>
+			</th>
+			<th scope="col" class="sortable column-face_complexion">
+			    <div class="text"><a>Face complexion</a></div>
+			    <div class="clear"></div>
+			</th>
+			<th scope="col" class="sortable column-face_shape">
+			    <div class="text"><a>Face shape</a></div>
+			    <div class="clear"></div>
+			</th>
+			<th scope="col" class="sortable column-hair">
+			    <div class="text"><a>Hair</a></div>
+			    <div class="clear"></div>
+			</th>
+			<th scope="col" class="sortable column-cheek">
+			    <div class="text"><a>Cheek</a></div>
+			    <div class="clear"></div>
+			</th>
+			<th scope="col" class="sortable column-cheek">
+			    <div class="text"><a>ear</a></div>
+			    <div class="clear"></div>
+			</th>
+			<th scope="col" class="sortable column-eyelashes">
+			    <div class="text"><a>Eyelashes</a></div>
+			    <div class="clear"></div>
+			</th>
+			<th scope="col" class="sortable column-eyebrow">
+			    <div class="text"><a>Eyebrow</a></div>
+			    <div class="clear"></div>
+			</th>
+			<th scope="col" class="sortable column-eyes">
+			    <div class="text"><a>Eyes</a></div>
+			   <div class="clear"></div>
+			</th>
+			<th scope="col" class="sortable column-nose">	   
+			    <div class="text"><a>Nose</a></div>
+			    <div class="clear"></div>
+			</th>
+		</tr>
+	</thead>
+
+	{% for suspect in results %}
+
+	<tr class="{% cycle 'odd' 'even' %}">
+		<td>
+			{{ suspect.first_name }}
+		</td>
+		<td>
+			{{ suspect.last_name }}
+		</td>
+		<td>
+			<img class="avatar" src="/media/{{ suspect.image }}" alt="">
+		</td>
+		<td>
+			{{ suspect.gender }}
+		</td>
+		<td>
+			{{ suspect.face_complexion }}
+		</td>
+		<td>
+			{{ suspect.face_shape }}
+		</td>
+		<td>
+			{{ suspect.hair }}
+		</td>
+		<td>
+			{{ suspect.cheek }}
+		</td>
+		<td>
+			{{ suspect.ear }}
+		</td>
+		<td>
+			{{ suspect.eyelashes }}
+		</td>
+		<td>
+			{{ suspect.eyebrow }}
+		</td>
+		<td>
+			{{ suspect.eyes }}
+		</td>
+		<td>
+			{{ suspect.nose }}
+		</td>
+	</tr>
+	{% endfor %}
+</table>
+
+{% endif %}

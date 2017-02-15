@@ -1,0 +1,19 @@
+{
+    "uwsgi": {
+        "chdir": "/usr/local/src/kando/deploy/web",
+        "venv": "/var/venv/",
+        "wsgi-file": "/usr/local/src/kando/deploy/web/kando/wsgi.py",
+        "module": "kando.wsgi:application",
+        "master": true,
+        "pidfile": "/var/run/uwsgi.pid",
+        "vacuum": true,
+        "socket": "/var/run/django.sock",
+        "chmod-socket": 664,
+        "uid": "www-data",
+        "gid": "www-data",
+        "processes": 3,
+        "plugins": "python3",
+        "chown-socket": "www-data",
+        "logto": "/var/log/uwsgi/kando.log"
+    }
+}

@@ -1,3 +1,1 @@
-from . import cfg
-
-import base
+from . import cfg, deploy

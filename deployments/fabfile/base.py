@@ -2,13 +2,12 @@
 Base Task for all server deploys.
 """
 
-from fabric.api import cd, env, execute, puts, run
-from fabric.contrib.files import exists
+from os.path import join
+
+from fabric.api import env
 from fabric.tasks import Task
 
-import git
-import nginx
-import tools
+from . import tools
 
 
 class Base(Task):
@@ -16,37 +15,51 @@ class Base(Task):
     Base Task to install basic server requirements
     """
     name = "prep_server"
+
     APT_DEBS = (
-        'bc',
+        'build-essential',
+        'curl',
+        'ethtool',
+        'gdb',
         'git-core',
-        'gzip',
         'htop',
+        'ipython',
+        'libpq-dev',
         'nginx',
-        'python-pip',
-        'rsync',
-        'sendmail',
+        'nginx-full',
+        'python3-dev',
+        'python3-pip',
+        'python3-setuptools',
+        'python3-venv',
+        'screen',
+        'sysstat',
+        'tree',
+        'uwsgi',
+        'uwsgi-plugin-python3',
+        'whois',
         'zsh',
     )
 
-    def run(self, git_branch='dev'):
+    @classmethod
+    def run(cls, git_branch='master'):
         """
         Run Base task
         """
+        tools.set_timezone_sast()
 
-        # Housekeeping
-        run('apt-get clean')
-        run('apt-get update')
+        tools.apt_clean_up()
 
-        tools.apt_get_install(self.APT_DEBS)
+        tools.apt_get_install(cls.APT_DEBS)
+
+        tools.upgrade_pip()
 
         tools.set_shell_to_zsh()
 
-        if exists(env.REPO_DIR):
-            with cd(env.REPO_DIR):
-                git.git_pull(git_branch)
-        else:
-            with cd(env.HOME_DIR):
-                git.fetch_clean_repo(env.REPO_URL)
+        tools.chown_log_dir()
 
-        execute(nginx.Nginx())
-BASE = Base()
+        tools.git_co(git_branch)
+
+        tools.pip_install_reqs(join(env.PROJECT_DIR, 'requirements.txt'))
+
+        tools.configure_project_owner_user()
+        tools.assign_correct_project_dir_permissions()

@@ -1,0 +1,182 @@
+{% extends 'sbsc/base.html' %}
+
+{% block extra_js %}
+ 
+<script type="text/javascript">
+	function FilterResults() { 
+		var gender = $('select[name="gender"] option:selected').val();
+		var face_complexion = $('select[name="face_complexion"] option:selected').val();
+		var face_shape = $('select[name="face_shape"] option:selected').val();
+		var hair = $('select[name="hair"] option:selected').val();
+		var cheek = $('select[name="cheek"] option:selected').val();
+		var ear = $('select[name="ear"] option:selected').val();
+		var eyelashes = $('select[name="eyelashes"] option:selected').val();
+		var eyebrow = $('select[name="eyebrow"] option:selected').val();
+		var eyes = $('select[name="eyes"] option:selected').val();
+		var nose = $('select[name="nose"] option:selected').val();
+
+        $.ajax({
+	        url : '/search/', // the endpoint
+	        type : "GET", // http method
+	        data : { 
+	        	gender: gender, face_complexion: face_complexion, face_shape: face_shape,
+	        	hair: hair, cheek: cheek, ear: ear, eyelashes: eyelashes, eyebrow: eyebrow, 
+	        	eyes: eyes, nose: nose
+	        }, // data sent with the get request
+
+	        // handle a successful response
+	        success : function(data) {
+	            if( data.trim()!='' ){
+	            	$( '#results' ).html(data);
+	            }
+	            else{
+	            	$('#results').html("<div class='alert-box alert radius' data-alert>Oops! Your search yielded no results. Please try again</div>"); // add the error to the dom
+	            }
+	        },
+
+	        // handle a non-successful response
+	        error : function(xhr, errmsg, err) {
+	            $('#results').html("<div class='alert-box alert radius' data-alert>Oops! Your search yielded no results. Please try again</div>"); // add the error to the dom
+	        }
+	    });
+    } 
+</script>
+ 
+{% endblock %}
+ 
+{% block main %}
+ 
+<div>
+	<div class="text"><span class="hint">Please select facial attributes from the drop downs to do a search</span></div>
+	</br>
+	<table>
+		<thead>
+			<tr>
+				<th scope="col" class="sortable column-gender">
+				    <div class="text"><a>Gender</a></div>
+				    <div class="clear"></div>
+				</th>
+				<th scope="col" class="sortable column-face_complexion">
+				    <div class="text"><a>Face complexion</a></div>
+				    <div class="clear"></div>
+				</th>
+				<th scope="col" class="sortable column-face_shape">
+				    <div class="text"><a>Face shape</a></div>
+				    <div class="clear"></div>
+				</th>
+				<th scope="col" class="sortable column-hair">
+				    <div class="text"><a>Hair</a></div>
+				    <div class="clear"></div>
+				</th>
+				<th scope="col" class="sortable column-cheek">
+				    <div class="text"><a>Cheek</a></div>
+				    <div class="clear"></div>
+				</th>
+				<th scope="col" class="sortable column-cheek">
+				    <div class="text"><a>Ear</a></div>
+				    <div class="clear"></div>
+				</th>
+				<th scope="col" class="sortable column-eyelashes">
+				    <div class="text"><a>Eyelashes</a></div>
+				    <div class="clear"></div>
+				</th>
+				<th scope="col" class="sortable column-eyebrow">
+				    <div class="text"><a>Eyebrow</a></div>
+				    <div class="clear"></div>
+				</th>
+				<th scope="col" class="sortable column-eyes">
+				    <div class="text"><a>Eyes</a></div>
+				   <div class="clear"></div>
+				</th>
+				<th scope="col" class="sortable column-nose">	   
+				    <div class="text"><a>Nose</a></div>
+				    <div class="clear"></div>
+				</th>
+			</tr>
+		</thead>
+
+		<form method="POST" >
+			{% csrf_token %}
+			<tr class="{% cycle 'odd' 'even' %}">
+				<td>
+					<select onchange="FilterResults()" name="gender">
+					{% for entry in form.gender %}
+					    <option value={{ entry }}</option>
+					{% endfor %}
+					</select>
+				</td>
+				<td>
+					<select onchange="FilterResults()" name="face_complexion">
+					{% for entry in form.face_complexion %}
+					    <option value={{ entry }}</option>
+					{% endfor %}
+					</select>
+				</td>
+				<td>
+					<select onchange="FilterResults()" name="face_shape">
+					{% for entry in form.face_shape %}
+					    <option value={{ entry }}</option>
+					{% endfor %}
+					</select>
+				</td>
+				<td>
+				<select onchange="FilterResults()" name="hair">
+					{% for entry in form.hair %}
+					    <option value={{ entry }}</option>
+					{% endfor %}
+					</select>
+				</td>
+				<td>
+					<select onchange="FilterResults()" name="cheek">
+					{% for entry in form.cheek %}
+					    <option value={{ entry }}</option>
+					{% endfor %}
+					</select>
+				</td>
+				<td>
+					<select onchange="FilterResults()" name="ear">
+					{% for entry in form.ear %}
+					    <option value={{ entry }}</option>
+					{% endfor %}
+					</select>
+				</td>
+				<td>
+					<select onchange="FilterResults()" name="eyelashes">
+					{% for entry in form.eyelashes %}
+					    <option value={{ entry }}</option>
+					{% endfor %}
+					</select>
+				</td>
+				<td>
+					<select onchange="FilterResults()" name="eyebrow">
+					{% for entry in form.eyebrow %}
+					    <option value={{ entry }}</option>
+					{% endfor %}
+					</select>
+				</td>
+				<td>
+					<select onchange="FilterResults()" name="eyes">
+					{% for entry in form.eyes %}
+					    <option value={{ entry }}</option>
+					{% endfor %}
+					</select>
+				</td>
+				<td>
+					<select onchange="FilterResults()" name="nose">
+					{% for entry in form.nose %}
+					    <option value={{ entry }}</option>
+					{% endfor %}
+					</select>
+				</td>
+			</tr>
+		</form>
+	</table>
+	<br/>
+	<div class="margin">
+		<span id="spinner"><img src="http://upload.wikimedia.org/wikipedia/commons/d/de/Ajax-loader.gif"/></span>
+		<div id="results">
+			{% include 'sbsc/results.html' %}
+		</div>
+	</div>
+</div>
+{% endblock %}

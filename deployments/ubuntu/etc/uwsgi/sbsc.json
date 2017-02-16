@@ -3,7 +3,7 @@
         "chdir": "/usr/local/src/sbsc/deploy/web",
         "venv": "/var/venv/",
         "wsgi-file": "/usr/local/src/sbsc/deploy/web/sbsc/wsgi.py",
-        "module": "kando.wsgi:application",
+        "module": "sbsc.wsgi:application",
         "master": true,
         "pidfile": "/var/run/uwsgi.pid",
         "vacuum": true,
@@ -14,6 +14,6 @@
         "processes": 3,
         "plugins": "python3",
         "chown-socket": "www-data",
-        "logto": "/var/log/uwsgi/kando.log"
+        "logto": "/var/log/uwsgi/sbsc.log"
     }
 }

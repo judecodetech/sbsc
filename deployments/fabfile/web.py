@@ -43,7 +43,7 @@ class NginxBasic(Task):
             join(env.ETC_DIR, 'uwsgi/emperor.uwsgi.service')))
 
         tools.restart_nginx()
-        tools.restart_uwsgi()
+        #tools.restart_uwsgi()
 
 
 class NginxFull(Task):
@@ -70,7 +70,7 @@ class NginxFull(Task):
         else:
             # Print out expiration date of SSL Certificates
             puts(red('Certificate exists: skipping certificate creation'))
-            run('echo | openssl s_client -connect {}:443 2>/dev/null | openssl x509 -noout -dates'.format(env.host))
+            #run('echo | openssl s_client -connect {}:443 2>/dev/null | openssl x509 -noout -dates'.format(env.host))
 
         # Upload real Nginx configs
         puts(yellow('Installing secure Nginx configs.'))

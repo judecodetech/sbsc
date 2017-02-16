@@ -25,7 +25,7 @@ SECRET_KEY = 'b)!7mkbn*8rkq!4m)jic8=flq9qj#k#x#@m1_-e+-yu94d9w_t'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['sbsc.serthe.com']
 
 
 # Application definition

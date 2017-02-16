@@ -18,7 +18,7 @@ LE_CRON = join(env.ETC_DIR, 'cron.d', 'ssl_cert_renewal')
 
 NGINX_PLACEHOLDER = 'INSERT_HOST_HERE'
 
-APP_LOG_DIR = join('/var', 'log', 'kando')
+APP_LOG_DIR = join('/var', 'log', 'sbsc')
 
 
 def apt_get_install(packages):
@@ -138,7 +138,7 @@ def chown_log_dir():
     create_directories([APP_LOG_DIR])
 
     # Add default Django log file
-    sudo('touch {}'.format(join(APP_LOG_DIR, 'kando.log')))
+    sudo('touch {}'.format(join(APP_LOG_DIR, 'sbsc.log')))
 
     group = 'breadcrumb'
     users = ('www-data', )

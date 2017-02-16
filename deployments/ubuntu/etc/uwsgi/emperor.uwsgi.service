@@ -3,7 +3,7 @@ Description=uWSGI Emperor
 After=syslog.target
 
 [Service]
-ExecStart=/usr/bin/uwsgi --json /etc/uwsgi/init/kando.json
+ExecStart=/usr/bin/uwsgi --json /etc/uwsgi/init/sbsc.json
 # Requires systemd version 211 or newer
 RuntimeDirectory=uwsgi
 Restart=always

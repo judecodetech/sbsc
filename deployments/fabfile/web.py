@@ -36,7 +36,7 @@ class NginxBasic(Task):
         # Install uWSGI file
         sudo('mkdir -p /etc/uwsgi/init/')
         sudo('install -v -m 644 {} /etc/uwsgi/init/'.format(
-            join(env.ETC_DIR, 'uwsgi', 'kando.json')))
+            join(env.ETC_DIR, 'uwsgi', 'sbsc.json')))
 
         # Install uWSGI upstart file
         sudo('install -v -m 644 {} /etc/systemd/system/'.format(

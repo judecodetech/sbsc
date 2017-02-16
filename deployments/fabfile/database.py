@@ -18,7 +18,7 @@ class Postgresql(Task):
 
     DB_NAME = 'sbsc'
     DJANGO_ROLE = 'sbsc'
-    DJANGO_PASS = 'DEgLkPuz4baqyAAuo6sn5AaCLWsY2nOW'
+    DJANGO_PASS = 'sbsc'
     BACKUP_USER = 'backup'
     BACKUP_PASS = 'YxhAdBpSuL8QLeCMWlbB2SEZen7wHd37'
 

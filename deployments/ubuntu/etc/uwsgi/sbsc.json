@@ -1,8 +1,8 @@
 {
     "uwsgi": {
-        "chdir": "/usr/local/src/kando/deploy/web",
+        "chdir": "/usr/local/src/sbsc/deploy/web",
         "venv": "/var/venv/",
-        "wsgi-file": "/usr/local/src/kando/deploy/web/kando/wsgi.py",
+        "wsgi-file": "/usr/local/src/sbsc/deploy/web/sbsc/wsgi.py",
         "module": "kando.wsgi:application",
         "master": true,
         "pidfile": "/var/run/uwsgi.pid",
